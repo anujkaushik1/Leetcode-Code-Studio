@@ -1,6 +1,82 @@
 
+//time - o(n)
+// space - o(1)
+
+class Solution {
+    public int compress(char[] chars) {
+        int count = 1;
+        int idx = 1;
+        int i = 0, j = 1;
+
+        while(j < chars.length){
+
+            if(chars[i] == chars[j])
+                count ++;
+            
+            else{
+
+                if(count > 1){
+                    
+                    if(count >= 10){
+                        
+                      String strCount = count + "";
+
+                      for(int x = 0; x< strCount.length(); x++){
+                          char c = strCount.charAt(x);
+                          chars[idx] = c;
+                          idx++;
+                     }
+                        
+                       count = 1;
+
+                    }
+                    else{
+                        char charCount = (char)(count + '0');
+                        chars[idx] = charCount;
+                        count = 1;
+                        idx++;
+                    }
+                }
+
+                chars[idx] = chars[j];
+                idx++;
+            }
+
+            i++;
+            j++;
+
+        }
+        
+           if(count > 1){
+                    
+                    if(count >= 10){
+                        
+                      String strCount = count + "";
+
+                      for(int x = 0; x< strCount.length(); x++){
+                          char c = strCount.charAt(x);
+                          chars[idx] = c;
+                          idx++;
+                     }
+                        
+                       count = 1;
+
+                    }
+                    else{
+                        char charCount = (char)(count + '0');
+                        chars[idx] = charCount;
+                        count = 1;
+                        idx++;
+                    }
+            }
+        
+        return idx;
+    }
+}
+
+
 // time => o(n)
-// space => o(1)
+// space => o(n)
 
 ArrayList<Character> al = new ArrayList<>();
         int count = 1;
